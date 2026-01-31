@@ -1,0 +1,10 @@
+{
+  "agent_name": "gemini-vibe-agent",
+  "model": "gemini-1.5-pro-latest",
+  "capabilities": [
+    "code-generation",
+    "refactoring",
+    "project-analysis"
+  ],
+  "context_window": 1000000
+}

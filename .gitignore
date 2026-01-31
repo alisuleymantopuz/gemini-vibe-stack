@@ -1,0 +1,31 @@
+# System Files
+.DS_Store
+Thumbs.db
+
+# Environment & Secrets
+.env
+secrets/*
+!secrets/.gitkeep
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build & Dist
+dist/
+build/
+
+# Generated Content
+gemini_context.md
+
+# Workspaces (Keep directory, ignore content)
+repos/*
+!repos/.gitkeep
+
+# Docker
+docker-compose.override.yml
+
+# Logs
+*.log
+npm-debug.log*

@@ -1,0 +1,41 @@
+services:
+  vibe-server:
+    image: node:20-slim
+    container_name: vibe-server
+    user: "${UID}:${GID}"
+    working_dir: /app
+    volumes:
+      - ./repos:/repos
+      - ./secrets:/secrets
+      - ./agents/gemini:/agents/gemini
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - PORT=3000
+    command: >
+      sh -c "npm install -g @google/generative-ai @google-cloud/vertexai google-auth-library &&
+             npm install -g typescript ts-node &&
+             tail -f /dev/null"
+    networks:
+      - gemini-net
+
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=${UID}
+      - PGID=${GID}
+      - TZ=Etc/UTC
+      - PASSWORD=${CODE_SERVER_PASSWORD:-gemini}
+      - DEFAULT_WORKSPACE=/repos
+    volumes:
+      - ./repos:/config/workspace
+      - ./secrets:/secrets:ro
+    ports:
+      - 8443:8443
+    restart: unless-stopped
+    networks:
+      - gemini-net
+
+networks:
+  gemini-net:
+    driver: bridge
