@@ -44,9 +44,10 @@ docker-compose up -d
 ### 🧠 massive Context Window (Gemini 1.5 Pro)
 Use the included script to aggregate your entire project into a single prompt for heavy refactoring tasks.
 
-\`\`\`bash
+`
 ./scripts/gen-context.sh
-\`\`\`
+`
+
 This generates \`gemini_context.md\`. Upload this file to Gemini Advanced or AI Studio to give the model full visibility of your codebase.
 
 ### 🔄 Service Mesh & Deployment
@@ -56,11 +57,12 @@ The \`vibe-server\` container mounts the \`/repos\` directory. You can use it to
 Secrets in \`.env\` are securely passed to containers. Agents running in \`vibe-server\` can access keys via environment variables or the \`/secrets\` mounted volume (if configured).
 
 ## Project Structure
-\`\`\`
+
+```
 ├── repos/           # Workspace for your apps/microservices
 ├── secrets/         # Secure storage (gitignored)
 ├── agents/          # Gemini agent configurations
 ├── scripts/         # Automation scripts
 ├── docker-compose.yml
 └── .env             # Environment variables
-\`\`\`
+```
